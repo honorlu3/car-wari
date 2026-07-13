@@ -1,0 +1,60 @@
+/* HERO */
+
+.hero-carousel{
+    margin-top:0;
+    border-radius:0;
+    overflow:hidden;
+}
+
+.hero-image{
+    height:600px;
+    object-fit:cover;
+    filter:brightness(.55);
+}
+
+.hero-content{
+    bottom:22%;
+    text-align:left;
+}
+
+.hero-content h5{
+
+    color:#FFD54F;
+
+    font-size:1.3rem;
+
+    letter-spacing:3px;
+
+}
+
+.hero-content h1{
+
+    font-size:4rem;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.hero-content p{
+
+    font-size:1.2rem;
+
+    max-width:650px;
+
+    margin-bottom:30px;
+
+}
+
+.hero-content .btn{
+
+    margin-right:10px;
+
+}
+
+
+#heroCarousel{
+    margin:0 !important;
+    padding:0 !important;
+}
