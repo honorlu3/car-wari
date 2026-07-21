@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('destino_id')->constrained()->onDelete('cascade');
+            $table->foreignId('destino_id')->constrained('destinations')->onDelete('cascade');
             $table->date('fecha_reserva');
             $table->integer('numero_personas');
             $table->decimal('precio_total', 8, 2);// 8 digitos en total, 2 decimales, por agregar en vista
