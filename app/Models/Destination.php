@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\DestinationImage;
 
 class Destination extends Model
 {
@@ -30,4 +31,9 @@ class Destination extends Model
         $destinations = Destination::all();
         return view('destinations.index', compact('destinations'));
     }
+
+    public function images()
+{
+    return $this->hasMany(DestinationImage::class);
+}
 }

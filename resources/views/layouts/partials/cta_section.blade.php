@@ -13,7 +13,7 @@
                 <a href="{{ route('reservas.create') }}" class="btn-cta-primary">
                     Reservar Ahora
                 </a>
-                <a href="https://wa.me/51999999999" target="_blank" class="btn-cta-whatsapp">
+                <a href="https://wa.me/51916466009" target="_blank" class="btn-cta-whatsapp">
                     <i class="bi bi-whatsapp"></i> WhatsApp
                 </a>
             </div>

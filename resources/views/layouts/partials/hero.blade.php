@@ -12,8 +12,9 @@
         <!-- Slide 1 -->
         <div class="carousel-item active">
 
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600"
-                 class="d-block w-100 hero-image">
+            <img src="{{ asset('storage/destinations/portada.jpeg') }}" 
+         class="d-block w-100 hero-image"
+         alt="Descubre Ayacucho con Car Wari Tours">
 
             <div class="carousel-caption hero-content">
 
@@ -48,7 +49,7 @@
 
         <div class="carousel-item">
 
-            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1600"
+            <img src="{{ asset('storage/destinations/portalwari.png') }}"
                  class="d-block w-100 hero-image">
 
         </div>
@@ -57,7 +58,7 @@
 
         <div class="carousel-item">
 
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600"
+            <img src="{{ asset('storage/destinations/hero3.png') }}"
                  class="d-block w-100 hero-image">
 
         </div>

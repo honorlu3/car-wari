@@ -877,7 +877,7 @@
                 <a href="#" class="btn-amarillo btn-lg">
                     <i class="bi bi-calendar-check me-2"></i>Reservar Ahora
                 </a>
-                <a href="https://wa.me/51999000000" class="btn-whatsapp btn-lg" target="_blank">
+                <a href="https://wa.me/51916466009" class="btn-whatsapp btn-lg" target="_blank">
                     <i class="bi bi-whatsapp me-2"></i>Escríbenos por WhatsApp
                 </a>
             </div>

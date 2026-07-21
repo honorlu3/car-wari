@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contacto')
+@section('title','Contacto | Car Wari')
 
 @section('content')
 <div class="container">

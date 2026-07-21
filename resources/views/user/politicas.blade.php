@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Políticas de Privacidad')
+@section('title','Política de Privacidad | Car Wari')
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Política de Privacidad de Car Wari - Transporte Turístico en Ayacucho, Perú. Conoce cómo protegemos tus datos personales.">

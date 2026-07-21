@@ -60,6 +60,13 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')
     Route::resource('users', UserController::class);
     //gestionar reservas desde el panel admin
 
+    //ruta para eliminar imagenes de destinos
+    Route::delete(
+    '/destination-images/{image}',
+    [DestinationController::class, 'destroyImage']
+)
+->name('destination-images.destroy');
+
     Route::get('/reservas', [ReservaController::class, 'adminIndex'])->name('reservas.index');
     Route::get('/reservas/create', [ReservaController::class, 'adminCreate'])->name('reservas.create');//{destination}
     Route::post('/reservas', [ReservaController::class, 'adminStore'])->name('reservas.store');
@@ -83,11 +90,6 @@ Route::put('/reservas/{reserva}/rechazar', [ReservaController::class, 'rechazar'
     ->name('reservas.rechazar');
 
 
-//ruta falllifa
-   //    Route::get('/reservas/{id}/confirmar', [AdminController::class, 'confirmarReserva'])->name('reservas.confirmar');
-
-    //actualizar estado de la reserva (admin)
-    //Route::put('/reservas/{reserva}/status', [ReservaController::class, 'updateStatus'])->name('reservas.updateStatus');
 
 });
 
@@ -95,9 +97,7 @@ Route::put('/reservas/{reserva}/rechazar', [ReservaController::class, 'rechazar'
 | PANEL USUARIO AUTENTICADO
 |----------------------------------------------------------------------------
 */
-//Route::get('/user', function () {
-  //  return view('user.welcome');
-//})->middleware(['auth', 'is_user'])->name('user.welcome');
+
 Route::middleware(['auth', IsUser::class])->prefix('user')->group(function () { //->prefix('user') ->name('user.')
     //pagina principal del usuario autenticado
     Route::get('/inicio',[DestinationController::class, 'indexUser'])->name('user.welcome');
@@ -106,7 +106,7 @@ Route::middleware(['auth', IsUser::class])->prefix('user')->group(function () { 
         return view('user.profile');
     })->name('user.profile');
     Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
-    Route::get('/destinations/{destination}', [DestinationController::class, 'show'])->name('destinations.show');
+    
     Route::get('/reservas/create', [ReservaController::class, 'create'])->name('reservas.create');//{destination}
     Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
     Route::get('/reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
@@ -114,20 +114,12 @@ Route::middleware(['auth', IsUser::class])->prefix('user')->group(function () { 
     Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 });
 
-/*|--------------------------------------------------------------------------
-| RUTAS PUBLICAS PARA USUARIOS NO AUTENTICADOS
-|----------------------------------------------------------------------------
-*/
-//pagina principal para usuarios no autenticados
-//Route::get('/', [DestinationController::class, 'publicIndex'])->name('welcome');
-//Route::get('/', function(){
-  //  return view('welcome');
-//});
 
 
 //rutas publicas para destinos
 Route::get('/destinations', [DestinationController::class, 'publicIndex'])->name('destinations.index');
 //Route::get('/destinations/{destination}', [DestinationController::class, 'show'])->name('destinations.show');
+Route::get('/destinations/{destination}', [DestinationController::class, 'show'])->name('destinations.show');
 
 
 Route::get('/', [DestinationController::class, 'home'])

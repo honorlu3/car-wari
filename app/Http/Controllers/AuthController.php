@@ -49,7 +49,7 @@ class AuthController extends Controller
         ]);
 
         // Intentar login
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, true)) { // true para recordar al usuario
             $request->session()->regenerate(); // proteger contra ataques de sesión
             // Redirigir según el rol
             if (Auth::user()->role === 'admin') {

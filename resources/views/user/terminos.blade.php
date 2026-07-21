@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'terminos y condiciones')
+@section('title','Términos y Condiciones | Car Wari')
 
 @section('content')
     
@@ -1780,7 +1780,7 @@
                         <i class="bi bi-envelope-fill"></i>
                         Contáctanos
                     </a>
-                    <a href="https://wa.me/51999000000" class="btn-cta btn-cta-whatsapp" target="_blank">
+                    <a href="https://wa.me/51916466009" class="btn-cta btn-cta-whatsapp" target="_blank">
                         <i class="bi bi-whatsapp"></i>
                         WhatsApp
                     </a>

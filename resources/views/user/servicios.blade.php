@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Servicios')
+@section('title','Servicios Turísticos | Car Wari')
 
 @section('content')
 
@@ -1405,7 +1405,7 @@
                     <i class="bi bi-calendar-check-fill"></i>
                     Reservar Ahora
                 </a>
-                <a href="https://wa.me/51999000000" class="btn-whatsapp" target="_blank">
+                <a href="https://wa.me/51916466009" class="btn-whatsapp" target="_blank">
                     <i class="bi bi-whatsapp"></i>
                     Contactar por WhatsApp
                 </a>
@@ -1413,56 +1413,104 @@
         </div>
     </section>
 
+   
+
     <!-- ============================================
-         2. BUSCADOR DE SERVICIOS
-         ============================================ -->
-    <section class="buscador-section">
-        <div class="container">
-            <div class="buscador-card">
-                <div class="buscador-grid">
-                    <div class="buscador-item">
-                        <label><i class="bi bi-geo-alt-fill"></i> Origen</label>
-                        <input type="text" placeholder="¿Desde dónde?">
-                    </div>
-                    <div class="buscador-item">
-                        <label><i class="bi bi-pin-map-fill"></i> Destino</label>
-                        <input type="text" placeholder="¿A dónde vas?">
-                    </div>
-                    <div class="buscador-item">
-                        <label><i class="bi bi-calendar-fill"></i> Fecha</label>
-                        <input type="date">
-                    </div>
-                    <div class="buscador-item">
-                        <label><i class="bi bi-people-fill"></i> Pasajeros</label>
-                        <select>
-                            <option>1 pasajero</option>
-                            <option>2 pasajeros</option>
-                            <option>3-4 pasajeros</option>
-                            <option>5-7 pasajeros</option>
-                            <option>8+ pasajeros</option>
-                        </select>
-                    </div>
-                    <div class="buscador-item">
-                        <label><i class="bi bi-car-front-fill"></i> Tipo de servicio</label>
-                        <select>
-                            <option>Tour turístico</option>
-                            <option>Traslado aeropuerto</option>
-                            <option>Taxi interprovincial</option>
-                            <option>Transporte corporativo</option>
-                            <option>Transporte ejecutivo VIP</option>
-                            <option>Viaje personalizado</option>
-                        </select>
-                    </div>
-                    <div class="buscador-item">
-                        <button class="buscador-btn">
-                            <i class="bi bi-search"></i>
-                            Buscar
-                        </button>
-                    </div>
+     2. BUSCADOR DE SERVICIOS
+     ============================================ -->
+<section class="buscador-section">
+    <div class="container">
+        <div class="buscador-card">
+            <div class="buscador-grid">
+                <div class="buscador-item">
+                    <label><i class="bi bi-geo-alt-fill"></i> Origen</label>
+                    <input type="text" id="origen" placeholder="¿Desde dónde?">
+                </div>
+                <div class="buscador-item">
+                    <label><i class="bi bi-pin-map-fill"></i> Destino</label>
+                    <input type="text" id="destino" placeholder="¿A dónde vas?">
+                </div>
+                <div class="buscador-item">
+                    <label><i class="bi bi-calendar-fill"></i> Fecha</label>
+                    <input type="date" id="fecha">
+                </div>
+                <div class="buscador-item">
+                    <label><i class="bi bi-people-fill"></i> Pasajeros</label>
+                    <select id="pasajeros">
+                        <option>1 pasajero</option>
+                        <option>2 pasajeros</option>
+                        <option>3-4 pasajeros</option>
+                        <option>5-7 pasajeros</option>
+                        <option>8+ pasajeros</option>
+                    </select>
+                </div>
+                <div class="buscador-item">
+                    <label><i class="bi bi-car-front-fill"></i> Tipo de servicio</label>
+                    <select id="servicio">
+                        <option>Tour turístico</option>
+                        <option>Traslado aeropuerto</option>
+                        <option>Taxi interprovincial</option>
+                        <option>Transporte corporativo</option>
+                        <option>Transporte ejecutivo VIP</option>
+                        <option>Viaje personalizado</option>
+                    </select>
+                </div>
+                <div class="buscador-item">
+                    <button class="buscador-btn" id="btnBuscar">
+                        <i class="bi bi-search"></i>
+                        Buscar
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Script para enviar a WhatsApp -->
+<script>
+    document.getElementById('btnBuscar').addEventListener('click', function() {
+        // Capturar valores
+        const origen = document.getElementById('origen').value || 'No especificado';
+        const destino = document.getElementById('destino').value || 'No especificado';
+        const fecha = document.getElementById('fecha').value || 'No especificada';
+        const pasajeros = document.getElementById('pasajeros').value;
+        const servicio = document.getElementById('servicio').value;
+        
+        // Formatear fecha
+        const fechaFormateada = fecha !== 'No especificada' ? 
+            new Date(fecha).toLocaleDateString('es-PE', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }) : 'No especificada';
+        
+        // Construir mensaje
+        const mensaje = `¡Hola Car Wari! 
+
+Me interesa solicitar información sobre sus servicios:
+
+ *Tipo de servicio:* ${servicio}
+📍 *Origen:* ${origen}
+🎯 *Destino:* ${destino}
+📅 *Fecha:* ${fechaFormateada}
+👥 *Pasajeros:* ${pasajeros}
+
+Por favor, envíenme más detalles y cotización. ¡Gracias!`;
+        
+        // Codificar mensaje para URL
+        const mensajeCodificado = encodeURIComponent(mensaje);
+        
+        // Número de WhatsApp (cambiar por el número real)
+        const numeroWhatsApp = '51916466009'; // Número de WhatsApp con código de país
+        
+        // Abrir WhatsApp
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+        window.open(urlWhatsApp, '_blank');
+    });
+</script>
+
+
 
     <!-- ============================================
          3. SERVICIOS PRINCIPALES
@@ -1721,216 +1769,253 @@
     </section>
 
     <!-- ============================================
-         5. DESTINOS INTERPROVINCIALES
-         ============================================ -->
-    <section class="section-padding destinos-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <div class="badge-seccion">
-                    <i class="bi bi-signpost-2-fill"></i>
-                    Rutas Interprovinciales
-                </div>
-                <h2 class="section-title">Conectamos Ayacucho con el Perú</h2>
-                <p class="section-subtitle">
-                    Viajes privados y seguros hacia los principales destinos del país.
-                </p>
+     5. DESTINOS INTERPROVINCIALES
+     ============================================ -->
+<section class="section-padding destinos-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="badge-seccion">
+                <i class="bi bi-signpost-2-fill"></i>
+                Rutas Interprovinciales
             </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="destino-card">
-                        <div class="destino-imagen">
-                            <img src="https://images.unsplash.com/photo-1531968455001-5c5272a67c71?w=600" alt="Ayacucho a Lima">
-                            <div class="destino-ruta">
-                                <div class="ruta-texto">RUTA DIRECTA</div>
-                                <h4>Ayacucho <i class="bi bi-arrow-right"></i> Lima</h4>
-                            </div>
-                        </div>
-                        <div class="destino-info">
-                            <div class="destino-detalles">
-                                <div class="destino-detalle">
-                                    <i class="bi bi-signpost-fill"></i>
-                                    <span><strong>620 km</strong> de distancia</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-clock-fill"></i>
-                                    <span><strong>10-12 horas</strong> estimado</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <span><strong>SUV / Minivan</strong> recomendado</span>
-                                </div>
-                            </div>
-                            <button class="btn-destino">
-                                <i class="bi bi-calendar-check"></i>
-                                Consultar disponibilidad
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="destino-card">
-                        <div class="destino-imagen">
-                            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600" alt="Ayacucho a Cusco">
-                            <div class="destino-ruta">
-                                <div class="ruta-texto">RUTA TURÍSTICA</div>
-                                <h4>Ayacucho <i class="bi bi-arrow-right"></i> Cusco</h4>
-                            </div>
-                        </div>
-                        <div class="destino-info">
-                            <div class="destino-detalles">
-                                <div class="destino-detalle">
-                                    <i class="bi bi-signpost-fill"></i>
-                                    <span><strong>680 km</strong> de distancia</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-clock-fill"></i>
-                                    <span><strong>12-14 horas</strong> estimado</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <span><strong>SUV 4x4</strong> recomendado</span>
-                                </div>
-                            </div>
-                            <button class="btn-destino">
-                                <i class="bi bi-calendar-check"></i>
-                                Consultar disponibilidad
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="destino-card">
-                        <div class="destino-imagen">
-                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600" alt="Ayacucho a Huancayo">
-                            <div class="destino-ruta">
-                                <div class="ruta-texto">RUTA ANDINA</div>
-                                <h4>Ayacucho <i class="bi bi-arrow-right"></i> Huancayo</h4>
-                            </div>
-                        </div>
-                        <div class="destino-info">
-                            <div class="destino-detalles">
-                                <div class="destino-detalle">
-                                    <i class="bi bi-signpost-fill"></i>
-                                    <span><strong>380 km</strong> de distancia</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-clock-fill"></i>
-                                    <span><strong>7-9 horas</strong> estimado</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <span><strong>SUV / Minivan</strong> recomendado</span>
-                                </div>
-                            </div>
-                            <button class="btn-destino">
-                                <i class="bi bi-calendar-check"></i>
-                                Consultar disponibilidad
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="destino-card">
-                        <div class="destino-imagen">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Ayacucho a Ica">
-                            <div class="destino-ruta">
-                                <div class="ruta-texto">RUTA COSTERA</div>
-                                <h4>Ayacucho <i class="bi bi-arrow-right"></i> Ica</h4>
-                            </div>
-                        </div>
-                        <div class="destino-info">
-                            <div class="destino-detalles">
-                                <div class="destino-detalle">
-                                    <i class="bi bi-signpost-fill"></i>
-                                    <span><strong>420 km</strong> de distancia</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-clock-fill"></i>
-                                    <span><strong>7-8 horas</strong> estimado</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <span><strong>SUV / Auto</strong> recomendado</span>
-                                </div>
-                            </div>
-                            <button class="btn-destino">
-                                <i class="bi bi-calendar-check"></i>
-                                Consultar disponibilidad
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="destino-card">
-                        <div class="destino-imagen">
-                            <img src="https://images.unsplash.com/photo-1518182170543-3712c2e1e6a0?w=600" alt="Ayacucho a Nazca">
-                            <div class="destino-ruta">
-                                <div class="ruta-texto">RUTA ARQUEOLÓGICA</div>
-                                <h4>Ayacucho <i class="bi bi-arrow-right"></i> Nazca</h4>
-                            </div>
-                        </div>
-                        <div class="destino-info">
-                            <div class="destino-detalles">
-                                <div class="destino-detalle">
-                                    <i class="bi bi-signpost-fill"></i>
-                                    <span><strong>350 km</strong> de distancia</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-clock-fill"></i>
-                                    <span><strong>6-7 horas</strong> estimado</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <span><strong>SUV / Auto</strong> recomendado</span>
-                                </div>
-                            </div>
-                            <button class="btn-destino">
-                                <i class="bi bi-calendar-check"></i>
-                                Consultar disponibilidad
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="destino-card">
-                        <div class="destino-imagen">
-                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600" alt="Ayacucho a Abancay">
-                            <div class="destino-ruta">
-                                <div class="ruta-texto">RUTA SUR</div>
-                                <h4>Ayacucho <i class="bi bi-arrow-right"></i> Abancay</h4>
-                            </div>
-                        </div>
-                        <div class="destino-info">
-                            <div class="destino-detalles">
-                                <div class="destino-detalle">
-                                    <i class="bi bi-signpost-fill"></i>
-                                    <span><strong>520 km</strong> de distancia</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-clock-fill"></i>
-                                    <span><strong>10-12 horas</strong> estimado</span>
-                                </div>
-                                <div class="destino-detalle">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <span><strong>SUV 4x4</strong> recomendado</span>
-                                </div>
-                            </div>
-                            <button class="btn-destino">
-                                <i class="bi bi-calendar-check"></i>
-                                Consultar disponibilidad
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title">Conectamos Ayacucho con el Perú</h2>
+            <p class="section-subtitle">
+                Viajes privados y seguros hacia los principales destinos del país.
+            </p>
         </div>
-    </section>
+
+        <div class="row g-4">
+            <!-- RUTA 1: LIMA -->
+            <div class="col-lg-4 col-md-6">
+                <div class="destino-card" 
+                     data-origen="Ayacucho" 
+                     data-destino="Lima" 
+                     data-distancia="620 km" 
+                     data-tiempo="10-12 horas" 
+                     data-vehiculo="AUTOS / SUV / Minivan">
+                    <div class="destino-imagen">
+                        <img src="https://images.unsplash.com/photo-1531968455001-5c5272a67c71?w=600" alt="Ayacucho a Lima">
+                        <div class="destino-ruta">
+                            <div class="ruta-texto">RUTA DIRECTA</div>
+                            <h4>Ayacucho <i class="bi bi-arrow-right"></i> Lima</h4>
+                        </div>
+                    </div>
+                    <div class="destino-info">
+                        <div class="destino-detalles">
+                            <div class="destino-detalle">
+                                <i class="bi bi-signpost-fill"></i>
+                                <span><strong>620 km</strong> de distancia</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>10-12 horas</strong> estimado</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-car-front-fill"></i>
+                                <span><strong>AUTOS / SUV / Minivan</strong> recomendado</span>
+                            </div>
+                        </div>
+                        <button class="btn-destino btn-consultar-ruta">
+                            <i class="bi bi-calendar-check"></i>
+                            Consultar disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUTA 2: CUSCO -->
+            <div class="col-lg-4 col-md-6">
+                <div class="destino-card" 
+                     data-origen="Ayacucho" 
+                     data-destino="Cusco" 
+                     data-distancia="680 km" 
+                     data-tiempo="12-14 horas" 
+                     data-vehiculo="AUTOS / SUV 4x4">
+                    <div class="destino-imagen">
+                        <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600" alt="Ayacucho a Cusco">
+                        <div class="destino-ruta">
+                            <div class="ruta-texto">RUTA TURÍSTICA</div>
+                            <h4>Ayacucho <i class="bi bi-arrow-right"></i> Cusco</h4>
+                        </div>
+                    </div>
+                    <div class="destino-info">
+                        <div class="destino-detalles">
+                            <div class="destino-detalle">
+                                <i class="bi bi-signpost-fill"></i>
+                                <span><strong>680 km</strong> de distancia</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>12-14 horas</strong> estimado</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-car-front-fill"></i>
+                                <span><strong>AUTOS / SUV 4x4</strong> recomendado</span>
+                            </div>
+                        </div>
+                        <button class="btn-destino btn-consultar-ruta">
+                            <i class="bi bi-calendar-check"></i>
+                            Consultar disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUTA 3: HUANCAYO -->
+            <div class="col-lg-4 col-md-6">
+                <div class="destino-card" 
+                     data-origen="Ayacucho" 
+                     data-destino="Huancayo" 
+                     data-distancia="380 km" 
+                     data-tiempo="7-9 horas" 
+                     data-vehiculo="AUTOS / SUV / Minivan">
+                    <div class="destino-imagen">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600" alt="Ayacucho a Huancayo">
+                        <div class="destino-ruta">
+                            <div class="ruta-texto">RUTA ANDINA</div>
+                            <h4>Ayacucho <i class="bi bi-arrow-right"></i> Huancayo</h4>
+                        </div>
+                    </div>
+                    <div class="destino-info">
+                        <div class="destino-detalles">
+                            <div class="destino-detalle">
+                                <i class="bi bi-signpost-fill"></i>
+                                <span><strong>380 km</strong> de distancia</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>7-9 horas</strong> estimado</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-car-front-fill"></i>
+                                <span><strong>AUTOS / SUV / Minivan</strong> recomendado</span>
+                            </div>
+                        </div>
+                        <button class="btn-destino btn-consultar-ruta">
+                            <i class="bi bi-calendar-check"></i>
+                            Consultar disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUTA 4: ICA -->
+            <div class="col-lg-4 col-md-6">
+                <div class="destino-card" 
+                     data-origen="Ayacucho" 
+                     data-destino="Ica" 
+                     data-distancia="420 km" 
+                     data-tiempo="7-8 horas" 
+                     data-vehiculo="SUV / Auto">
+                    <div class="destino-imagen">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Ayacucho a Ica">
+                        <div class="destino-ruta">
+                            <div class="ruta-texto">RUTA COSTERA</div>
+                            <h4>Ayacucho <i class="bi bi-arrow-right"></i> Ica</h4>
+                        </div>
+                    </div>
+                    <div class="destino-info">
+                        <div class="destino-detalles">
+                            <div class="destino-detalle">
+                                <i class="bi bi-signpost-fill"></i>
+                                <span><strong>420 km</strong> de distancia</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>7-8 horas</strong> estimado</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-car-front-fill"></i>
+                                <span><strong>SUV / Auto</strong> recomendado</span>
+                            </div>
+                        </div>
+                        <button class="btn-destino btn-consultar-ruta">
+                            <i class="bi bi-calendar-check"></i>
+                            Consultar disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUTA 5: NAZCA -->
+            <div class="col-lg-4 col-md-6">
+                <div class="destino-card" 
+                     data-origen="Ayacucho" 
+                     data-destino="Nazca" 
+                     data-distancia="350 km" 
+                     data-tiempo="6-7 horas" 
+                     data-vehiculo="SUV / Auto">
+                    <div class="destino-imagen">
+                        <img src="https://images.unsplash.com/photo-1518182170543-3712c2e1e6a0?w=600" alt="Ayacucho a Nazca">
+                        <div class="destino-ruta">
+                            <div class="ruta-texto">RUTA ARQUEOLÓGICA</div>
+                            <h4>Ayacucho <i class="bi bi-arrow-right"></i> Nazca</h4>
+                        </div>
+                    </div>
+                    <div class="destino-info">
+                        <div class="destino-detalles">
+                            <div class="destino-detalle">
+                                <i class="bi bi-signpost-fill"></i>
+                                <span><strong>350 km</strong> de distancia</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>6-7 horas</strong> estimado</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-car-front-fill"></i>
+                                <span><strong>SUV / Auto</strong> recomendado</span>
+                            </div>
+                        </div>
+                        <button class="btn-destino btn-consultar-ruta">
+                            <i class="bi bi-calendar-check"></i>
+                            Consultar disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUTA 6: ABANCAY -->
+            <div class="col-lg-4 col-md-6">
+                <div class="destino-card" 
+                     data-origen="Ayacucho" 
+                     data-destino="Abancay" 
+                     data-distancia="520 km" 
+                     data-tiempo="10-12 horas" 
+                     data-vehiculo="AUTOS / SUV 4x4">
+                    <div class="destino-imagen">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600" alt="Ayacucho a Abancay">
+                        <div class="destino-ruta">
+                            <div class="ruta-texto">RUTA SUR</div>
+                            <h4>Ayacucho <i class="bi bi-arrow-right"></i> Abancay</h4>
+                        </div>
+                    </div>
+                    <div class="destino-info">
+                        <div class="destino-detalles">
+                            <div class="destino-detalle">
+                                <i class="bi bi-signpost-fill"></i>
+                                <span><strong>520 km</strong> de distancia</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-clock-fill"></i>
+                                <span><strong>10-12 horas</strong> estimado</span>
+                            </div>
+                            <div class="destino-detalle">
+                                <i class="bi bi-car-front-fill"></i>
+                                <span><strong>AUTOS / SUV 4x4</strong> recomendado</span>
+                            </div>
+                        </div>
+                        <button class="btn-destino btn-consultar-ruta">
+                            <i class="bi bi-calendar-check"></i>
+                            Consultar disponibilidad
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- ============================================
          6. FLOTA DE VEHÍCULOS
@@ -2598,7 +2683,7 @@
                         <i class="bi bi-calendar-check-fill"></i>
                         Reservar Ahora
                     </a>
-                    <a href="https://wa.me/51999000000" class="btn-whatsapp btn-cta" target="_blank">
+                    <a href="https://wa.me/51916466009" class="btn-whatsapp btn-cta" target="_blank">
                         <i class="bi bi-whatsapp"></i>
                         WhatsApp
                     </a>
@@ -2609,13 +2694,52 @@
 
    
 
-    <!-- WhatsApp Floating -->
-    <a href="https://wa.me/51999000000" class="whatsapp-float" target="_blank" title="Chatea con nosotros">
-        <i class="bi bi-whatsapp"></i>
-    </a>
+  
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script>
+    // Lógica para los botones de "Consultar disponibilidad" en rutas interprovinciales
+    document.querySelectorAll('.btn-consultar-ruta').forEach(button => {
+        button.addEventListener('click', function() {
+            // 1. Obtener la tarjeta padre que contiene los datos
+            const card = this.closest('.destino-card');
+            
+            // 2. Extraer la información de los atributos data-*
+            const origen = card.getAttribute('data-origen');
+            const destino = card.getAttribute('data-destino');
+            const distancia = card.getAttribute('data-distancia');
+            const tiempo = card.getAttribute('data-tiempo');
+            const vehiculo = card.getAttribute('data-vehiculo');
+            
+            // 3. Construir el mensaje profesional para WhatsApp
+            const mensaje = `¡Hola Car Wari! 👋
+
+Me interesa consultar la disponibilidad y cotización para la siguiente ruta:
+
+📍 *Origen:* ${origen}
+🎯 *Destino:* ${destino}
+📏 *Distancia:* ${distancia}
+⏱️ *Tiempo estimado:* ${tiempo}
+🚗 *Vehículo recomendado:* ${vehiculo}
+
+Por favor, envíenme más detalles, precios y fechas disponibles. ¡Gracias!`;
+            
+            // 4. Codificar el mensaje para que sea válido en una URL
+            const mensajeCodificado = encodeURIComponent(mensaje);
+            
+            // 5. Número de WhatsApp de la empresa (¡Cámbialo por el número real!)
+            const numeroWhatsApp = '51999000000'; 
+            
+            // 6. Abrir WhatsApp en una nueva pestaña
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    });
+</script>
 </body>
 </html>
 
