@@ -63,15 +63,15 @@
                 <ul class="footer-contact">
                     <li>
                         <i class="bi bi-geo-alt"></i>
-                        <span>Jr. 28 de Julio 125, Ayacucho, Perú</span>
+                        <span>Av. Mariscal Cáceres s/n , Ayacucho, Perú</span>
                     </li>
                     <li>
                         <i class="bi bi-telephone"></i>
-                        <span>+51 999 000 000</span>
+                        <span>+51 916 466 009</span>
                     </li>
                     <li>
                         <i class="bi bi-envelope"></i>
-                        <span>hola@carwari.pe</span>
+                        <span>transportescarwari@gmail.com</span>
                     </li>
                 </ul>
                 <div class="schedule-box">

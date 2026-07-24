@@ -8,6 +8,7 @@ use App\Models\Destination;
 use Illuminate\Http\Request;
 use App\Models\DestinationImage;
 
+
 class DestinationController extends Controller
 {
     /**
@@ -53,7 +54,7 @@ class DestinationController extends Controller
             'description' => 'required|string',
             'location' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación de imagen
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120', // Validación de imagen y aumentar el tamaño máximo a 5MB
         ]);
         
         
@@ -121,9 +122,9 @@ public function update(Request $request, Destination $destination)
 
         'price' => 'required|numeric|min:0',
 
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
 
-        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
 
     ]);
 
@@ -223,6 +224,8 @@ public function update(Request $request, Destination $destination)
     return view('welcome', compact('destinations'));
 }
 
+
+//metodo para eliminar imagenes de la galeria de un destino
 public function destroyImage(DestinationImage $image)
 {
 
@@ -243,5 +246,19 @@ public function destroyImage(DestinationImage $image)
 
 }
 
+
+//metodo para eliminar la imagen principal de un destino
+public function deleteImage(Destination $destination)
+{
+    if ($destination->image) {
+
+        Storage::disk('public')->delete($destination->image);
+
+        $destination->image = null;
+        $destination->save();
+    }
+
+    return back()->with('success', 'Imagen principal eliminada correctamente.');
+}
 
 }

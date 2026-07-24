@@ -67,6 +67,12 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')
 )
 ->name('destination-images.destroy');
 
+//ruta para eliminar la imagen principal de un destino
+Route::delete(
+    '/destinations/{destination}/delete-image',
+    [DestinationController::class, 'deleteImage']
+)->name('destinations.deleteImage');
+
     Route::get('/reservas', [ReservaController::class, 'adminIndex'])->name('reservas.index');
     Route::get('/reservas/create', [ReservaController::class, 'adminCreate'])->name('reservas.create');//{destination}
     Route::post('/reservas', [ReservaController::class, 'adminStore'])->name('reservas.store');

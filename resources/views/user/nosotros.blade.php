@@ -131,48 +131,161 @@
             line-height: 1.7;
         }
 
+        
+
+
         /* ============================================
-           1. HERO SECTION
-           ============================================ */
-        .hero-nosotros {
-            position: relative;
-            min-height: 70vh;
-            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.8)), 
-                        url('https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1920') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px;
-        }
+   1. HERO SECTION (100% RESPONSIVE)
+   ============================================ */
+.hero-nosotros {
+    position: relative;
+    min-height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
+    background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.85)), 
+                url('https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1920') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 80px; /* Padding superior para no tapar con el navbar */
+    width: 100%;
+}
 
-        .hero-content h1 {
-            font-size: 64px;
-            color: var(--blanco);
-            margin-bottom: 24px;
-            line-height: 1.1;
-            font-weight: 800;
-        }
+.hero-content {
+    max-width: 900px;
+    width: 100%;
+    z-index: 2;
+}
 
-        .hero-content h1 span {
-            color: var(--amarillo);
-        }
+.hero-content h1 {
+    font-size: 64px;
+    color: var(--blanco);
+    margin-bottom: 24px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
 
-        .hero-content p {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
+.hero-content h1 span {
+    color: var(--amarillo);
+}
 
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.hero-content p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
 
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   MEDIA QUERIES (RESPONSIVE)
+   ============================================ */
+
+/* 📱 Móviles pequeños (hasta 575px) */
+@media (max-width: 575px) {
+    .hero-nosotros {
+        min-height: 100vh; /* En celular, mejor que ocupe toda la pantalla */
+        padding: 100px 16px 60px;
+        background-position: center center;
+    }
+
+    .hero-content h1 {
+        font-size: 36px; /* Tamaño legible en celular */
+        margin-bottom: 16px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+        flex-direction: column; /* Botones uno debajo del otro */
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .hero-buttons .btn-amarillo,
+    .hero-buttons .btn-negro {
+        width: 100%; /* Botones de ancho completo para fácil toque */
+        justify-content: center;
+        padding: 16px 24px;
+    }
+}
+
+/* 📱 Móviles grandes y Tablets pequeñas (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .hero-nosotros {
+        min-height: 85vh;
+        padding: 110px 24px 70px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+}
+
+/* 📱 Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero-nosotros {
+        min-height: 75vh;
+        padding: 120px 32px 80px;
+    }
+
+    .hero-content h1 {
+        font-size: 52px;
+    }
+
+    .hero-content p {
+        font-size: 19px;
+    }
+}
+
+/* 💻 Laptops y Desktop (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero-content h1 {
+        font-size: 58px;
+    }
+}
+
+/* 🖥️ Pantallas Grandes (1200px en adelante) */
+@media (min-width: 1200px) {
+    .hero-content h1 {
+        font-size: 68px; /* Un poco más grande en pantallas gigantes */
+    }
+    
+    .hero-nosotros {
+        min-height: 85vh;
+    }
+}
+
+/* Animación de entrada (opcional, para darle toque premium) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
         /* ============================================
            2. NUESTRA HISTORIA
            ============================================ */
@@ -615,29 +728,28 @@
 
 @section('content')
  <!-- ============================================
-         1. HERO SECTION
-         ============================================ -->
-    <section class="hero-nosotros">
-        <div class="hero-content animate-fadeInUp">
-            <h1>
-                Más que transporte...<br>
-                <span>Creamos experiencias</span> inolvidables.
-            </h1>
-            <p>
-                Conectamos personas con los destinos más increíbles de Ayacucho 
-                mediante un servicio seguro, cómodo y puntual.
-            </p>
-            <div class="hero-buttons">
-                <a href="#" class="btn-amarillo">
-                    <i class="bi bi-calendar-check me-2"></i>Reservar Ahora
-                </a>
-                <a href="#" class="btn-negro">
-                    <i class="bi bi-map me-2"></i>Conocer Destinos
-                </a>
-            </div>
+     1. HERO SECTION
+     ============================================ -->
+<section class="hero-nosotros">
+    <div class="hero-content animate-fadeInUp">
+        <h1>
+            Tours<br>
+            <span>Car Wari</span> 24/7
+        </h1>
+        <p>
+            Conectamos personas con los destinos más increíbles de Ayacucho 
+            mediante un servicio seguro, cómodo y puntual.
+        </p>
+        <div class="hero-buttons">
+            <a href="#reservar" class="btn-amarillo">
+                <i class="bi bi-calendar-check me-2"></i>Reservar Ahora
+            </a>
+            <a href="#destinos" class="btn-negro">
+                <i class="bi bi-map me-2"></i>Conocer Destinos
+            </a>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- ============================================
          2. NUESTRA HISTORIA
          ============================================ -->

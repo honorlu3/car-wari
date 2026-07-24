@@ -36,46 +36,46 @@
 <div class="container-fluid py-4" style="background-color: #000;">
     <div class="container">
         <div class="row g-4">
-            {{-- Left Column - Image Gallery --}}
-            <div class="col-lg-7">
-                {{-- Main Image --}}
-                <div class="position-relative mb-3">
-                    @if($destination->image)
-                        <img id="mainImage"
-                             src="{{ asset('storage/' . $destination->image) }}"
-                             alt="{{ $destination->name }}"
-                             class="img-fluid w-100 image-clickable"
-                             style="height: 500px; object-fit: cover; cursor: pointer; border-radius: 20px;"
-                             onclick="openImageModal(this.src)">
-                    @else
-                        <img id="mainImage"
-                             src="{{ asset('images/no-image.jpg') }}"
-                             class="img-fluid w-100"
-                             style="height: 500px; object-fit: cover; border-radius: 20px;">
-                    @endif
-                </div>
+           {{-- Left Column - Image Gallery --}}
+<div class="col-lg-7">
+    {{-- Main Image --}}
+    <div class="position-relative mb-3">
+        @if($destination->image)
+            <img id="mainImage"
+                 src="{{ asset('storage/' . $destination->image) }}"
+                 alt="{{ $destination->name }}"
+                 class="img-fluid w-100 image-clickable"
+                 style="height: 500px; object-fit: cover; cursor: pointer; border-radius: 20px;"
+                 onclick="openImageModal(this.src)">
+        @else
+            <img id="mainImage"
+                 src="{{ asset('images/no-image.jpg') }}"
+                 class="img-fluid w-100"
+                 style="height: 500px; object-fit: cover; border-radius: 20px;">
+        @endif
+    </div>
 
-                {{-- Thumbnail Images - 3 columns --}}
-                <div class="row g-3">
-                    @if($destination->image)
-                        <div class="col-4">
-                            <img src="{{ asset('storage/'.$destination->image) }}"
-                                 class="img-fluid gallery-thumb active-thumb w-100"
-                                 style="height: 140px; object-fit: cover; cursor: pointer; border-radius: 12px;"
-                                 onclick="changeImage(this.src, this)">
-                        </div>
-                    @endif
-
-                    @foreach($destination->images->take(2) as $image)
-                        <div class="col-4">
-                            <img src="{{ asset('storage/'.$image->image) }}"
-                                 class="img-fluid gallery-thumb w-100"
-                                 style="height: 140px; object-fit: cover; cursor: pointer; border-radius: 12px;"
-                                 onclick="changeImage(this.src, this)">
-                        </div>
-                    @endforeach
-                </div>
+    {{-- Thumbnail Images - 3 columns (mostrando TODAS las imágenes) --}}
+    <div class="row g-3">
+        @if($destination->image)
+            <div class="col-4">
+                <img src="{{ asset('storage/'.$destination->image) }}"
+                     class="img-fluid gallery-thumb active-thumb w-100"
+                     style="height: 140px; object-fit: cover; cursor: pointer; border-radius: 12px;"
+                     onclick="changeImage(this.src, this)">
             </div>
+        @endif
+
+        @foreach($destination->images as $image)
+            <div class="col-4">
+                <img src="{{ asset('storage/'.$image->image) }}"
+                     class="img-fluid gallery-thumb w-100"
+                     style="height: 140px; object-fit: cover; cursor: pointer; border-radius: 12px;"
+                     onclick="changeImage(this.src, this)">
+            </div>
+        @endforeach
+    </div>
+</div>
 
             {{-- Right Column - Tour Details --}}
             <div class="col-lg-5">
@@ -373,31 +373,426 @@
                         class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
                         data-bs-dismiss="modal"
                         aria-label="Close"
-                        style="z-index: 10;"></button>
+                        style="z-index: 1050;"></button>
                 
-                <img id="modalImage"
-                     src=""
-                     alt="Imagen destino"
-                     class="img-fluid w-100 rounded-4"
-                     style="max-height: 90vh; object-fit: contain;">
+                {{-- Contenedor de zoom --}}
+                <div id="zoomContainer" 
+                     class="position-relative d-flex align-items-center justify-content-center"
+                     style="min-height: 90vh; overflow: hidden; background: #000;">
+                    
+                    <img id="modalImage"
+                         src=""
+                         alt="Imagen destino"
+                         class="img-fluid"
+                         style="max-height: 90vh; 
+                                max-width: 100%; 
+                                object-fit: contain;
+                                transition: transform 0.2s ease;
+                                cursor: zoom-in;
+                                transform-origin: center center;
+                                user-select: none;
+                                -webkit-user-drag: none;">
+                </div>
                 
+                {{-- Botones de navegación (izquierda/derecha) --}}
                 <button type="button"
-                        class="btn position-absolute top-50 start-0 translate-middle-y ms-3"
+                        class="btn position-absolute top-50 start-0 translate-middle-y ms-3 nav-btn"
                         onclick="previousImage()"
-                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px;">
+                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px; z-index: 1050;">
                     <i class="bi bi-chevron-left text-dark fs-5"></i>
                 </button>
                 
                 <button type="button"
-                        class="btn position-absolute top-50 end-0 translate-middle-y me-3"
+                        class="btn position-absolute top-50 end-0 translate-middle-y me-3 nav-btn"
                         onclick="nextImage()"
-                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px;">
+                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px; z-index: 1050;">
                     <i class="bi bi-chevron-right text-dark fs-5"></i>
+                </button>
+                
+                {{-- Botones de zoom (abajo) --}}
+                <button type="button"
+                        class="btn zoom-btn zoom-in"
+                        onclick="zoomIn()"
+                        title="Acercar"
+                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px; z-index: 1050;">
+                    <i class="bi bi-plus-lg text-dark fs-5"></i>
+                </button>
+                
+                <button type="button"
+                        class="btn zoom-btn zoom-out"
+                        onclick="zoomOut()"
+                        title="Alejar"
+                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px; z-index: 1050;">
+                    <i class="bi bi-dash-lg text-dark fs-5"></i>
+                </button>
+                
+                <button type="button"
+                        class="btn zoom-btn zoom-reset"
+                        onclick="resetZoom()"
+                        title="Resetear zoom"
+                        style="background: rgba(255,193,7,0.9); border: none; border-radius: 50%; width: 45px; height: 45px; z-index: 1050;">
+                    <i class="bi bi-arrows-angle-contract text-dark fs-5"></i>
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+{{-- Estilos del modal con zoom --}}
+<style>
+/* Fondo negro del modal */
+#imageModal .modal-content {
+    background: #000 !important;
+}
+
+#imageModal .modal-body {
+    background: #000 !important;
+}
+
+/* Contenedor de zoom */
+#zoomContainer {
+    cursor: grab;
+}
+
+#zoomContainer:active {
+    cursor: grabbing;
+}
+
+/* Imagen con zoom */
+#modalImage.zoomed {
+    cursor: move;
+    transition: none;
+}
+
+/* Botones de zoom */
+.zoom-btn {
+    position: absolute;
+    bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 193, 7, 1) !important;
+    transform: scale(1.1);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+.zoom-in {
+    right: 120px;
+}
+
+.zoom-out {
+    right: 70px;
+}
+
+.zoom-reset {
+    right: 20px;
+}
+
+/* Botones de navegación */
+.nav-btn {
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 193, 7, 1) !important;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Responsive - Móviles */
+@media (max-width: 768px) {
+    .zoom-btn {
+        width: 40px !important;
+        height: 40px !important;
+        bottom: 20px;
+    }
+    
+    .zoom-btn i {
+        font-size: 18px !important;
+    }
+    
+    .zoom-in {
+        right: 100px;
+    }
+    
+    .zoom-out {
+        right: 55px;
+    }
+    
+    .zoom-reset {
+        right: 10px;
+    }
+    
+    .nav-btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .nav-btn i {
+        font-size: 20px !important;
+    }
+}
+</style>
+
+{{-- JavaScript para zoom y navegación --}}
+<script>
+// Variables de zoom
+let currentZoom = 1;
+let currentTranslateX = 0;
+let currentTranslateY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let allImages = [];
+let currentImageIndex = 0;
+
+// Configuración de zoom
+const ZOOM_STEP = 0.25;
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 5;
+
+// Inicializar galería
+function initializeGallery() {
+    allImages = [];
+    
+    const mainImage = document.getElementById('mainImage');
+    if (mainImage && mainImage.src) {
+        allImages.push(mainImage.src);
+    }
+    
+    const thumbnails = document.querySelectorAll('.gallery-thumb');
+    thumbnails.forEach(thumb => {
+        if (thumb.src && !allImages.includes(thumb.src)) {
+            allImages.push(thumb.src);
+        }
+    });
+}
+
+// Abrir modal con imagen
+function openImageModal(imageSrc) {
+    initializeGallery();
+    currentImageIndex = allImages.indexOf(imageSrc);
+    if (currentImageIndex === -1) currentImageIndex = 0;
+    
+    resetZoom();
+    document.getElementById('modalImage').src = imageSrc;
+    
+    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+    modal.show();
+    
+    // Agregar event listeners después de abrir el modal
+    setTimeout(() => {
+        addZoomEventListeners();
+    }, 100);
+}
+
+// Cambiar imagen principal
+function changeImage(imageSrc, element) {
+    document.getElementById('mainImage').src = imageSrc;
+    
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+        thumb.classList.remove('active-thumb');
+    });
+    if (element) {
+        element.classList.add('active-thumb');
+    }
+}
+
+// ============================================
+// FUNCIONES DE ZOOM
+// ============================================
+
+function addZoomEventListeners() {
+    const img = document.getElementById('modalImage');
+    const container = document.getElementById('zoomContainer');
+    
+    if (!img || !container) return;
+    
+    // Zoom con rueda del mouse (PC)
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    
+    // Zoom con gestos touch (Celular)
+    let initialPinchDistance = null;
+    
+    container.addEventListener('touchstart', handleTouchStart, { passive: false });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    
+    // Drag para mover la imagen cuando hay zoom
+    container.addEventListener('mousedown', handleDragStart);
+    container.addEventListener('mousemove', handleDragMove);
+    container.addEventListener('mouseup', handleDragEnd);
+    container.addEventListener('mouseleave', handleDragEnd);
+}
+
+// Zoom con rueda del mouse
+function handleWheel(e) {
+    e.preventDefault();
+    
+    if (e.deltaY < 0) {
+        zoomIn();
+    } else {
+        zoomOut();
+    }
+}
+
+// Zoom con touch (pinch)
+function handleTouchStart(e) {
+    if (e.touches.length === 2) {
+        // Pinch gesture
+        initialPinchDistance = getPinchDistance(e.touches);
+    } else if (e.touches.length === 1 && currentZoom > MIN_ZOOM) {
+        // Drag gesture
+        isDragging = true;
+        startX = e.touches[0].clientX - currentTranslateX;
+        startY = e.touches[0].clientY - currentTranslateY;
+        document.getElementById('modalImage').classList.add('zoomed');
+    }
+}
+
+function handleTouchMove(e) {
+    e.preventDefault();
+    
+    if (e.touches.length === 2 && initialPinchDistance) {
+        // Pinch zoom
+        const currentDistance = getPinchDistance(e.touches);
+        const scale = currentDistance / initialPinchDistance;
+        const newZoom = currentZoom * scale;
+        
+        if (newZoom >= MIN_ZOOM && newZoom <= MAX_ZOOM) {
+            currentZoom = newZoom;
+            updateImageTransform();
+        }
+        
+        initialPinchDistance = currentDistance;
+    } else if (e.touches.length === 1 && isDragging) {
+        // Drag move
+        currentTranslateX = e.touches[0].clientX - startX;
+        currentTranslateY = e.touches[0].clientY - startY;
+        updateImageTransform();
+    }
+}
+
+function handleTouchEnd(e) {
+    isDragging = false;
+    initialPinchDistance = null;
+    document.getElementById('modalImage').classList.remove('zoomed');
+}
+
+function getPinchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+// Drag con mouse
+function handleDragStart(e) {
+    if (currentZoom > MIN_ZOOM) {
+        isDragging = true;
+        startX = e.clientX - currentTranslateX;
+        startY = e.clientY - currentTranslateY;
+        document.getElementById('modalImage').classList.add('zoomed');
+    }
+}
+
+function handleDragMove(e) {
+    if (isDragging) {
+        currentTranslateX = e.clientX - startX;
+        currentTranslateY = e.clientY - startY;
+        updateImageTransform();
+    }
+}
+
+function handleDragEnd() {
+    isDragging = false;
+    document.getElementById('modalImage').classList.remove('zoomed');
+}
+
+// Funciones de zoom con botones
+function zoomIn() {
+    if (currentZoom < MAX_ZOOM) {
+        currentZoom = Math.min(currentZoom + ZOOM_STEP, MAX_ZOOM);
+        updateImageTransform();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > MIN_ZOOM) {
+        currentZoom = Math.max(currentZoom - ZOOM_STEP, MIN_ZOOM);
+        if (currentZoom === MIN_ZOOM) {
+            resetZoom();
+        } else {
+            updateImageTransform();
+        }
+    }
+}
+
+function resetZoom() {
+    currentZoom = 1;
+    currentTranslateX = 0;
+    currentTranslateY = 0;
+    updateImageTransform();
+}
+
+function updateImageTransform() {
+    const img = document.getElementById('modalImage');
+    if (img) {
+        img.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentZoom})`;
+    }
+}
+
+// ============================================
+// NAVEGACIÓN DE IMÁGENES
+// ============================================
+
+function previousImage() {
+    currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+    updateModalImage();
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % allImages.length;
+    updateModalImage();
+}
+
+function updateModalImage() {
+    if (allImages.length > 0) {
+        resetZoom();
+        document.getElementById('modalImage').src = allImages[currentImageIndex];
+    }
+}
+
+// Navegación con teclado
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('imageModal');
+    if (modal && modal.classList.contains('show')) {
+        if (e.key === 'ArrowLeft') {
+            previousImage();
+        } else if (e.key === 'ArrowRight') {
+            nextImage();
+        } else if (e.key === 'Escape') {
+            const bsModal = bootstrap.Modal.getInstance(modal);
+            if (bsModal) {
+                bsModal.hide();
+            }
+        } else if (e.key === '+' || e.key === '=') {
+            zoomIn();
+        } else if (e.key === '-') {
+            zoomOut();
+        } else if (e.key === '0') {
+            resetZoom();
+        }
+    }
+});
+
+// Inicializar al cargar
+document.addEventListener('DOMContentLoaded', function() {
+    initializeGallery();
+});
+</script>
 
 {{-- Share Modal --}}
 <div class="modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
@@ -478,8 +873,11 @@
     </div>
 </div>
 
-
 <style>
+/* ============================================
+   ESTILOS GENERALES DE LA GALERÍA
+   ============================================ */
+
 /* Image hover effect */
 .image-clickable {
     transition: transform 0.3s ease;
@@ -493,7 +891,7 @@
 .gallery-thumb {
     transition: all 0.3s ease;
     border: 3px solid transparent;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .gallery-thumb:hover {
@@ -505,6 +903,88 @@
     border-color: #FFC107;
     opacity: 1;
 }
+
+/* ============================================
+   MODAL DE IMAGEN - FONDO NEGRO COMPLETO
+   ============================================ */
+
+/* Fondo oscuro del modal (backdrop) - 100% opaco */
+#imageModal {
+    background-color: rgba(0, 0, 0, 1) !important;
+}
+
+/* Contenido del modal */
+#imageModal .modal-content {
+    background-color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Body del modal sin padding extra */
+#imageModal .modal-body {
+    background-color: #000000 !important;
+    padding: 0 !important;
+}
+
+/* Imagen centrada y completa */
+#imageModal .modal-body img {
+    max-height: 90vh;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Botón cerrar más visible */
+#imageModal .btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    z-index: 1050;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+#imageModal .btn-close-white:hover {
+    opacity: 1;
+}
+
+/* Botones de navegación */
+#imageModal .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 193, 7, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1050;
+}
+
+#imageModal .nav-btn:hover {
+    background: rgba(255, 193, 7, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+#imageModal .nav-btn i {
+    color: #000;
+    font-size: 24px;
+}
+
+#imageModal .nav-btn.prev {
+    left: 20px;
+}
+
+#imageModal .nav-btn.next {
+    right: 20px;
+}
+
+/* ============================================
+   SIDEBAR Y COMPONENTES ADICIONALES
+   ============================================ */
 
 /* Sticky sidebar */
 .tour-sidebar {
@@ -543,21 +1023,27 @@
     filter: brightness(0) invert(1);
 }
 
-/* Responsive */
-@media (max-width: 991px) {
-    .tour-sidebar {
-        position: static;
-        margin-top: 2rem;
-    }
-    
-    #mainImage {
-        height: 300px !important;
-    }
-    
-    .gallery-thumb {
-        height: 100px !important;
-    }
+/* ============================================
+   MODAL DE COMPARTIR
+   ============================================ */
+
+#shareModal .modal-content {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
+
+#shareModal .btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+#shareModal .card {
+    border: 1px solid #333;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
 
 /* Smooth fade for tabs */
 .tab-pane {
@@ -575,23 +1061,6 @@
     }
 }
 
-
-
-/* Share modal styles */
-#shareModal .modal-content {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-}
-
-#shareModal .btn:hover {
-    transform: translateY(-2px);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-#shareModal .card {
-    border: 1px solid #333;
-}
-
 /* Toast animation */
 .toast {
     animation: slideUp 0.3s ease;
@@ -605,6 +1074,40 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .tour-sidebar {
+        position: static;
+        margin-top: 2rem;
+    }
+    
+    #mainImage {
+        height: 300px !important;
+    }
+    
+    .gallery-thumb {
+        height: 100px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #imageModal .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #imageModal .nav-btn.prev {
+        left: 10px;
+    }
+    
+    #imageModal .nav-btn.next {
+        right: 10px;
     }
 }
 </style>

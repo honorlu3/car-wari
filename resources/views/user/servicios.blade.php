@@ -1396,7 +1396,7 @@
         <div class="hero-content fade-in">
             <div class="badge-seccion" style="background: rgba(255,215,0,0.15); color: var(--amarillo);">
                 <i class="bi bi-stars"></i>
-                Car Wari Servicios
+                Car Wari Servicios a toda hora
             </div>
             <h1>Nuestros <span>Servicios</span></h1>
             <p>Soluciones de transporte turístico para cada necesidad.</p>
@@ -1439,9 +1439,10 @@
                     <select id="pasajeros">
                         <option>1 pasajero</option>
                         <option>2 pasajeros</option>
-                        <option>3-4 pasajeros</option>
-                        <option>5-7 pasajeros</option>
-                        <option>8+ pasajeros</option>
+                        <option>3 pasajeros</option>
+                        <option>4 pasajeros</option>
+                        <option>5 pasajeros</option>
+                        <option>6 + pasajeros</option>
                     </select>
                 </div>
                 <div class="buscador-item">
@@ -1449,7 +1450,7 @@
                     <select id="servicio">
                         <option>Tour turístico</option>
                         <option>Traslado aeropuerto</option>
-                        <option>Taxi interprovincial</option>
+                        <option>Autos colectivos</option>
                         <option>Transporte corporativo</option>
                         <option>Transporte ejecutivo VIP</option>
                         <option>Viaje personalizado</option>
@@ -1513,182 +1514,194 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
 
 
     <!-- ============================================
-         3. SERVICIOS PRINCIPALES
-         ============================================ -->
-    <section class="section-padding servicios-section" id="servicios">
-        <div class="container">
-            <div class="text-center mb-5">
-                <div class="badge-seccion">
-                    <i class="bi bi-grid-3x3-gap-fill"></i>
-                    Nuestros Servicios
+     3. SERVICIOS PRINCIPALES
+     ============================================ -->
+<section class="section-padding servicios-section" id="servicios">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="badge-seccion">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                Nuestros Servicios
+            </div>
+            <h2 class="section-title">Soluciones para cada viaje</h2>
+            <p class="section-subtitle">
+                Ofrecemos una amplia gama de servicios de transporte turístico diseñados 
+                para satisfacer todas tus necesidades de movilidad en Ayacucho y el Perú.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Servicio 1: Tours Turísticos -->
+            <div class="col-lg-4 col-md-6">
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600" alt="Tours Turísticos">
+                        <div class="servicio-badge">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            Tours
+                        </div>
+                    </div>
+                    <div class="servicio-contenido">
+                        <h3>🌄 Tours Turísticos</h3>
+                        <p>Conoce los principales atractivos turísticos de Ayacucho con nuestros tours guiados por expertos locales.</p>
+                        <ul class="servicio-beneficios">
+                            <li>Guía local certificado</li>
+                            <li>Vehículos cómodos y modernos</li>
+                            <li>Rutas personalizadas</li>
+                        </ul>
+                        <button class="btn-servicio btn-servicio-wa" 
+                                data-servicio="Tours Turísticos" 
+                                data-mensaje="Hola Car Wari, me interesa obtener más información y cotización sobre sus Tours Turísticos.">
+                            Ver Tours <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
-                <h2 class="section-title">Soluciones para cada viaje</h2>
-                <p class="section-subtitle">
-                    Ofrecemos una amplia gama de servicios de transporte turístico diseñados 
-                    para satisfacer todas tus necesidades de movilidad en Ayacucho y el Perú.
-                </p>
             </div>
 
-            <div class="row g-4">
-                <!-- Servicio 1: Tours Turísticos -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="servicio-card">
-                        <div class="servicio-imagen">
-                            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600" alt="Tours Turísticos">
-                            <div class="servicio-badge">
-                                <i class="bi bi-geo-alt-fill"></i>
-                                Tours
-                            </div>
-                        </div>
-                        <div class="servicio-contenido">
-                            <h3>🌄 Tours Turísticos</h3>
-                            <p>Conoce los principales atractivos turísticos de Ayacucho con nuestros tours guiados por expertos locales.</p>
-                            <ul class="servicio-beneficios">
-                                <li>Guía local certificado</li>
-                                <li>Vehículos cómodos y modernos</li>
-                                <li>Rutas personalizadas</li>
-                            </ul>
-                            <button class="btn-servicio">
-                                Ver Tours <i class="bi bi-arrow-right"></i>
-                            </button>
+            <!-- Servicio 2: Traslado Aeropuerto -->
+            <div class="col-lg-4 col-md-6">
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600" alt="Traslado Aeropuerto">
+                        <div class="servicio-badge">
+                            <i class="bi bi-airplane-fill"></i>
+                            Aeropuerto
                         </div>
                     </div>
-                </div>
-
-                <!-- Servicio 2: Traslado Aeropuerto -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="servicio-card">
-                        <div class="servicio-imagen">
-                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600" alt="Traslado Aeropuerto">
-                            <div class="servicio-badge">
-                                <i class="bi bi-airplane-fill"></i>
-                                Aeropuerto
-                            </div>
-                        </div>
-                        <div class="servicio-contenido">
-                            <h3>️ Traslado Aeropuerto</h3>
-                            <p>Recojo y traslado puntual desde y hacia el aeropuerto Alfredo Mendívil Duarte de Ayacucho.</p>
-                            <ul class="servicio-beneficios">
-                                <li>Monitoreo de vuelos</li>
-                                <li>Espera sin cargo (30 min)</li>
-                                <li>Asistencia con equipaje</li>
-                            </ul>
-                            <button class="btn-servicio">
-                                Reservar <i class="bi bi-arrow-right"></i>
-                            </button>
-                        </div>
+                    <div class="servicio-contenido">
+                        <h3>✈️ Traslado Aeropuerto</h3>
+                        <p>Recojo y traslado puntual desde y hacia el aeropuerto Alfredo Mendívil Duarte de Ayacucho.</p>
+                        <ul class="servicio-beneficios">
+                            <li>Monitoreo de vuelos</li>
+                            <li>Espera sin cargo (30 min)</li>
+                            <li>Asistencia con equipaje</li>
+                        </ul>
+                        <button class="btn-servicio btn-servicio-wa" 
+                                data-servicio="Traslado Aeropuerto" 
+                                data-mensaje="Hola Car Wari, deseo reservar o cotizar el servicio de Traslado al Aeropuerto.">
+                            Reservar <i class="bi bi-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Servicio 3: Taxi Interprovincial (DESTACADO) -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="servicio-card servicio-destacado">
-                        <div class="servicio-imagen">
-                            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600" alt="Taxi Interprovincial">
-                            <div class="servicio-badge">
-                                <i class="bi bi-signpost-2-fill"></i>
-                                Interprovincial
-                            </div>
-                        </div>
-                        <div class="servicio-contenido">
-                            <h3>🚙 Taxi Interprovincial</h3>
-                            <p>Viajes privados desde Ayacucho hacia cualquier provincia del Perú con total comodidad y seguridad.</p>
-                            <div class="servicio-destinos">
-                                <span class="destino-tag">Lima</span>
-                                <span class="destino-tag">Cusco</span>
-                                <span class="destino-tag">Huancayo</span>
-                                <span class="destino-tag">Nazca</span>
-                                <span class="destino-tag">Abancay</span>
-                                <span class="destino-tag">Ica</span>
-                            </div>
-                            <button class="btn-servicio" style="background: var(--amarillo); color: var(--negro);">
-                                Cotizar Viaje <i class="bi bi-arrow-right"></i>
-                            </button>
+            <!-- Servicio 3: Taxi Interprovincial (DESTACADO) -->
+            <div class="col-lg-4 col-md-6">
+                <div class="servicio-card servicio-destacado">
+                    <div class="servicio-imagen">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600" alt="Taxi Interprovincial">
+                        <div class="servicio-badge">
+                            <i class="bi bi-signpost-2-fill"></i>
+                            Interprovincial
                         </div>
                     </div>
-                </div>
-
-                <!-- Servicio 4: Transporte Corporativo -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="servicio-card">
-                        <div class="servicio-imagen">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600" alt="Transporte Corporativo">
-                            <div class="servicio-badge">
-                                <i class="bi bi-building-fill"></i>
-                                Corporativo
-                            </div>
+                    <div class="servicio-contenido">
+                        <h3>🚙 Auto colectivos</h3>
+                        <p>Viajes privados hacia cualquier provincia del Perú con total comodidad y seguridad.</p>
+                        <div class="servicio-destinos">
+                            <span class="destino-tag">Lima</span>
+                            <span class="destino-tag">Cusco</span>
+                            <span class="destino-tag">Huancayo</span>
+                            <span class="destino-tag">Nazca</span>
+                            <span class="destino-tag">Abancay</span>
+                            <span class="destino-tag">Ica</span>
                         </div>
-                        <div class="servicio-contenido">
-                            <h3>🏢 Transporte Corporativo</h3>
-                            <p>Movilidad para empresas e instituciones con servicio profesional y puntual garantizado.</p>
-                            <ul class="servicio-beneficios">
-                                <li>Facturación empresarial</li>
-                                <li>Contratos mensuales</li>
-                                <li>Reportes de servicio</li>
-                            </ul>
-                            <button class="btn-servicio">
-                                Solicitar Información <i class="bi bi-arrow-right"></i>
-                            </button>
-                        </div>
+                        <button class="btn-servicio btn-servicio-wa" 
+                                data-servicio="Taxi Interprovincial" 
+                                data-mensaje="Hola Car Wari, quiero cotizar un viaje interprovincial.">
+                            Cotizar Viaje <i class="bi bi-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Servicio 5: Transporte Ejecutivo VIP -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="servicio-card">
-                        <div class="servicio-imagen">
-                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516933?w=600" alt="Transporte Ejecutivo VIP">
-                            <div class="servicio-badge">
-                                <i class="bi bi-star-fill"></i>
-                                VIP
-                            </div>
-                        </div>
-                        <div class="servicio-contenido">
-                            <h3>⭐ Transporte Ejecutivo VIP</h3>
-                            <p>SUV Premium para clientes ejecutivos que buscan máxima comodidad y exclusividad en cada viaje.</p>
-                            <ul class="servicio-beneficios">
-                                <li>Vehículos de alta gama</li>
-                                <li>Conductores bilingües</li>
-                                <li>Servicio personalizado</li>
-                            </ul>
-                            <button class="btn-servicio">
-                                Reservar <i class="bi bi-arrow-right"></i>
-                            </button>
+            <!-- Servicio 4: Transporte Corporativo -->
+            <div class="col-lg-4 col-md-6">
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600" alt="Transporte Corporativo">
+                        <div class="servicio-badge">
+                            <i class="bi bi-building-fill"></i>
+                            Corporativo
                         </div>
                     </div>
+                    <div class="servicio-contenido">
+                        <h3>🏢 Transporte Corporativo</h3>
+                        <p>Movilidad para empresas e instituciones con servicio profesional y puntual garantizado.</p>
+                        <ul class="servicio-beneficios">
+                            <li>Facturación empresarial</li>
+                            <li>Contratos mensuales</li>
+                            <li>Reportes de servicio</li>
+                        </ul>
+                        <button class="btn-servicio btn-servicio-wa" 
+                                data-servicio="Transporte Corporativo" 
+                                data-mensaje="Hola Car Wari, represento a una empresa y me interesa información sobre su servicio de Transporte Corporativo.">
+                            Solicitar Información <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Servicio 6: Viajes Personalizados -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="servicio-card">
-                        <div class="servicio-imagen">
-                            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600" alt="Viajes Personalizados">
-                            <div class="servicio-badge">
-                                <i class="bi bi-compass-fill"></i>
-                                Personalizado
-                            </div>
+            <!-- Servicio 5: Transporte Ejecutivo VIP -->
+            <div class="col-lg-4 col-md-6">
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516933?w=600" alt="Transporte Ejecutivo VIP">
+                        <div class="servicio-badge">
+                            <i class="bi bi-star-fill"></i>
+                            VIP
                         </div>
-                        <div class="servicio-contenido">
-                            <h3>🗺️ Viajes Personalizados</h3>
-                            <p>Diseña tu propia ruta y vive una experiencia única adaptada a tus preferencias y presupuesto.</p>
-                            <ul class="servicio-beneficios">
-                                <li>Itinerario a tu medida</li>
-                                <li>Paradas ilimitadas</li>
-                                <li>Flexibilidad total</li>
-                            </ul>
-                            <button class="btn-servicio">
-                                Solicitar Cotización <i class="bi bi-arrow-right"></i>
-                            </button>
+                    </div>
+                    <div class="servicio-contenido">
+                        <h3>⭐ Transporte Ejecutivo VIP</h3>
+                        <p>SUV Premium para clientes ejecutivos que buscan máxima comodidad y exclusividad en cada viaje.</p>
+                        <ul class="servicio-beneficios">
+                            <li>Vehículos de alta gama</li>
+                            <li>Conductores bilingües</li>
+                            <li>Servicio personalizado</li>
+                        </ul>
+                        <button class="btn-servicio btn-servicio-wa" 
+                                data-servicio="Transporte Ejecutivo VIP" 
+                                data-mensaje="Hola Car Wari, me interesa reservar su servicio de Transporte Ejecutivo VIP.">
+                            Reservar <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 6: Viajes Personalizados -->
+            <div class="col-lg-4 col-md-6">
+                <div class="servicio-card">
+                    <div class="servicio-imagen">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600" alt="Viajes Personalizados">
+                        <div class="servicio-badge">
+                            <i class="bi bi-compass-fill"></i>
+                            Personalizado
                         </div>
+                    </div>
+                    <div class="servicio-contenido">
+                        <h3>🗺️ Viajes Personalizados</h3>
+                        <p>Diseña tu propia ruta y vive una experiencia única adaptada a tus preferencias y presupuesto.</p>
+                        <ul class="servicio-beneficios">
+                            <li>Itinerario a tu medida</li>
+                            <li>Paradas ilimitadas</li>
+                            <li>Flexibilidad total</li>
+                        </ul>
+                        <button class="btn-servicio btn-servicio-wa" 
+                                data-servicio="Viajes Personalizados" 
+                                data-mensaje="Hola Car Wari, quiero diseñar un viaje personalizado y necesito una cotización.">
+                            Solicitar Cotización <i class="bi bi-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- ============================================
          4. ¿POR QUÉ ELEGIR CAR WARI?
-         ============================================ -->
+         ============================================ 
     <section class="section-padding porque-section">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -1766,7 +1779,7 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- ============================================
      5. DESTINOS INTERPROVINCIALES
@@ -2019,7 +2032,7 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
 
     <!-- ============================================
          6. FLOTA DE VEHÍCULOS
-         ============================================ -->
+         ============================================ 
     <section class="section-padding flota-section">
         <div class="container">
             <div class="text-center mb-5">
@@ -2171,7 +2184,7 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
                 </div>
             </div>
         </div>
-    </section>
+    </section>  -->
 
     <!-- ============================================
          7. PROCESO DE RESERVA
@@ -2221,15 +2234,15 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-numero">1000+</div>
+                    <div class="stat-numero">200+</div>
                     <div class="stat-label">Clientes felices</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-numero">500+</div>
+                    <div class="stat-numero">300+</div>
                     <div class="stat-label">Viajes realizados</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-numero">20+</div>
+                    <div class="stat-numero">10+</div>
                     <div class="stat-label">Destinos</div>
                 </div>
                 <div class="stat-item">
@@ -2510,7 +2523,7 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
                                 <div class="accordion-body">
                                     Ofrecemos tours turísticos, traslados al aeropuerto, taxi interprovincial, 
                                     transporte corporativo, transporte ejecutivo VIP y viajes personalizados. 
-                                    Cada servicio está diseñado para满足不同 necesidades de nuestros clientes.
+                                    Cada servicio está diseñado para necesidades de nuestros clientes.
                                 </div>
                             </div>
                         </div>
@@ -2525,8 +2538,8 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     Puedes reservar a través de nuestro sitio web completando el formulario de búsqueda, 
-                                    contactándonos por WhatsApp al +51 999 000 000, o llamando directamente a nuestra línea 
-                                    de atención. También puedes visitar nuestras oficinas en Jr. 28 de Julio 125, Ayacucho.
+                                    contactándonos por WhatsApp al +51 916 466 009, o llamando directamente a nuestra línea 
+                                    de atención. También puedes visitar nuestras oficinas en Av. Mariscal cáceres s/n°, Ayacucho.
                                 </div>
                             </div>
                         </div>
@@ -2701,22 +2714,27 @@ Por favor, envíenme más detalles y cotización. ¡Gracias!`;
 
 
 
-    <script>
-    // Lógica para los botones de "Consultar disponibilidad" en rutas interprovinciales
-    document.querySelectorAll('.btn-consultar-ruta').forEach(button => {
-        button.addEventListener('click', function() {
-            // 1. Obtener la tarjeta padre que contiene los datos
-            const card = this.closest('.destino-card');
-            
-            // 2. Extraer la información de los atributos data-*
-            const origen = card.getAttribute('data-origen');
-            const destino = card.getAttribute('data-destino');
-            const distancia = card.getAttribute('data-distancia');
-            const tiempo = card.getAttribute('data-tiempo');
-            const vehiculo = card.getAttribute('data-vehiculo');
-            
-            // 3. Construir el mensaje profesional para WhatsApp
-            const mensaje = `¡Hola Car Wari! 👋
+<script>
+    // Esperar a que todo el documento HTML esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Número de WhatsApp de la empresa (¡CÁMBIALO POR EL REAL!)
+        const numeroWhatsApp = '51916466009'; 
+
+        // ==========================================
+        // 1. LÓGICA PARA RUTAS INTERPROVINCIALES
+        // ==========================================
+        document.querySelectorAll('.btn-consultar-ruta').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.destino-card');
+                
+                const origen = card.getAttribute('data-origen');
+                const destino = card.getAttribute('data-destino');
+                const distancia = card.getAttribute('data-distancia');
+                const tiempo = card.getAttribute('data-tiempo');
+                const vehiculo = card.getAttribute('data-vehiculo');
+                
+                const mensaje = `¡Hola Car Wari! 👋
 
 Me interesa consultar la disponibilidad y cotización para la siguiente ruta:
 
@@ -2727,17 +2745,29 @@ Me interesa consultar la disponibilidad y cotización para la siguiente ruta:
 🚗 *Vehículo recomendado:* ${vehiculo}
 
 Por favor, envíenme más detalles, precios y fechas disponibles. ¡Gracias!`;
-            
-            // 4. Codificar el mensaje para que sea válido en una URL
-            const mensajeCodificado = encodeURIComponent(mensaje);
-            
-            // 5. Número de WhatsApp de la empresa (¡Cámbialo por el número real!)
-            const numeroWhatsApp = '51999000000'; 
-            
-            // 6. Abrir WhatsApp en una nueva pestaña
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
-            window.open(urlWhatsApp, '_blank');
+                
+                const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+                window.open(urlWhatsApp, '_blank');
+            });
         });
+
+        // ==========================================
+        // 2. LÓGICA PARA SERVICIOS PRINCIPALES
+        // ==========================================
+        document.querySelectorAll('.btn-servicio-wa').forEach(button => {
+            button.addEventListener('click', function() {
+                const servicio = this.getAttribute('data-servicio');
+                const mensajeBase = this.getAttribute('data-mensaje');
+                
+                const mensajeFinal = `${mensajeBase} 
+
+Por favor, envíenme más detalles, disponibilidad y precios. ¡Gracias!`;
+                
+                const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeFinal)}`;
+                window.open(urlWhatsApp, '_blank');
+            });
+        });
+
     });
 </script>
 </body>
